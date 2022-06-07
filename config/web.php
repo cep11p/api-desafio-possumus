@@ -40,7 +40,7 @@ $config = [
             ],
             
         ],
-        
+
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
@@ -73,6 +73,13 @@ $config = [
         
     ],
     'params' => $params,
+
+     #Modules
+     'modules'=>[
+        'api' => [
+            'class' => 'app\modules\api\Api',
+        ]
+    ],
 ];
 
 if (YII_ENV_DEV) {
