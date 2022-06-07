@@ -56,11 +56,11 @@ Dentro de la carpeta api-desafio-possumus vamos a corremos el sieguiente comando
 
 		docker-compose -p app down
 
-Luego de desplegar los contenedor, procedemos a la creacion de la bases de datos con el siguiente comando. La bd se persiste en el volume de docker-compose llamado app_desafio-vol
+Luego de desplegar los contenedores, procedemos a la creación de la base de datos con el siguiente comando. La bd se persiste en el volumen de docker-compose llamado app_desafio-vol
 
     docker exec -i app_desafio_db_1 mysql -u root -proot --execute 'create database desafio DEFAULT CHARACTER SET utf8'
 
-Ademas se deben instalar las librerias necesarias para su funcionamiento, para ellos hacemos lo siguiente:
+Ademas se deben instalar las librerias y correr migraciones para su correcto funcionamiento, para ellos hacemos lo siguiente:
 
     Ingresamos al contenedor
         docker exec -ti app_desafio_1 bash
@@ -71,7 +71,7 @@ Ademas se deben instalar las librerias necesarias para su funcionamiento, para e
     Corremos las migraciones dentro del mismo contenedor
         /yii migrate/up
 
-Como ultimo paso debemos configurar nuestro hosts /etc/hosts de nuestra computadora. Esto nos permite ir al navegador y encontrar nuesta aplicacion con la url desafio.local/. Para seguimos la siguientes instrucciones:
+Como ultimo paso debemos configurar nuestro hosts /etc/hosts de nuestra computadora. Esto nos permite ir al navegador y encontrar nuesta aplicacion con la url desafio.local/. Para ello, realizamos las siguientes instrucciones:
 
     #editamos el hosts
     sudo nano /etc/hosts
@@ -87,7 +87,7 @@ CONFIGURATION
 ### Database
 Las configuraciones de bd se encuentran en `config/db.php`, aca mismo vamos a usar variables de entorno creadas en el docker-compose
 
-**Lista de URls:**
+## Lista de URls:
 
 Obtenemos la lista de usuarios
     (GET) desafio.local/api/users 
