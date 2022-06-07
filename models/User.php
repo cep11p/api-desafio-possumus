@@ -2,12 +2,11 @@
 
 namespace app\models;
 
-use Yii;
 use \app\models\base\User as BaseUser;
 use yii\helpers\ArrayHelper;
 
 /**
- * This is the model class for table "users".
+ * This is the model class for table "user".
  */
 class User extends BaseUser
 {
