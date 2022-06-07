@@ -81,15 +81,14 @@ class UserController extends ActiveController{
             
             if($model==NULL){
                 $msj = 'El usuario no existe!';
-                throw new HttpException($msj);
+                throw new HttpException(400,$msj);
             }            
             $model->setAttributes($param);       
                  
             if(!$model->save()){
                 throw new HttpException(400,json_encode($model->getErrors()));
             }
-            
-           
+                 
             $transaction->commit();
             
             $resultado['success'] =  true;

@@ -30,7 +30,6 @@ class User extends BaseUser
             parent::rules(),
             [
                 # custom validation rules
-                ['fecha_nacimiento', 'date', 'format' => 'php:Y-m-d'],
                 ['email', 'email'],
                 ['fecha_nacimiento', 'validarEdad']
             ]
