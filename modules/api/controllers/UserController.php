@@ -1,7 +1,10 @@
 <?php
 namespace app\modules\api\controllers;
 
+use app\models\User;
+use Yii;
 use yii\rest\ActiveController;
+use yii\web\HttpException;
 use yii\web\Response;
 
 
@@ -59,6 +62,42 @@ class UserController extends ActiveController{
         $resultado = $searchModel->search($params);
 
         return $resultado;
+    }
+
+    public function actionModificar($nro_documento)
+    {
+        $param = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            
+            /************ Persona *************/
+            $model = User::findOne(['nro_documento'=>$nro_documento]);
+            
+            if($model==NULL){
+                $msj = 'El usuario no existe!';
+                throw new HttpException($msj);
+            }            
+            $model->setAttributes($param);       
+                 
+            if(!$model->save()){
+                throw new HttpException(400,json_encode($model->getErrors()));
+            }
+            
+           
+            $transaction->commit();
+            
+            $resultado['success'] =  true;
+            $resultado['data']['id'] =  $model->id;
+            return $resultado;
+           
+        }catch (HttpException $exc) {            
+            $transaction->rollBack();
+            $mensaje =$exc->getMessage();
+            $code = (empty($exc->getCode()))?400:$exc->getCode();
+            throw new \yii\web\HttpException($code,$mensaje);
+
+        }
+
     }
     
 }

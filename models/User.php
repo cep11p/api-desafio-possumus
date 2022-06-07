@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\components\Help;
 use \app\models\base\User as BaseUser;
 use yii\helpers\ArrayHelper;
 

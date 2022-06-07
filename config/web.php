@@ -70,6 +70,11 @@ $config = [
                 [   #user
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/user', 
+                    'extraPatterns' => [
+                        'PUT modificar/{nro_documento}' => 'modificar',
+                        'OPTIONS modificar/{nro_documento}' => 'modificar',
+                    ],
+                    'tokens' => [ '{id}' => '<id:\\w+>', '{nro_documento}'=>'<nro_documento:\\w+>' ],
                 ],
             ]
         ],
