@@ -7,7 +7,7 @@ namespace app\models\base;
 use Yii;
 
 /**
- * This is the base-model class for table "users".
+ * This is the base-model class for table "user".
  *
  * @property integer $id
  * @property string $nombre
@@ -27,7 +27,7 @@ abstract class User extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'users';
+        return 'user';
     }
 
     /**

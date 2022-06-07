@@ -12,7 +12,7 @@ class m220607_181426_tabla_usuario extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('users',[
+        $this->createTable('user',[
             'id' => $this->primaryKey()->notNull(),
             'nombre' => $this->string(200)->notNull(),
             'apellido' => $this->string(200)->notNull(),
