@@ -64,6 +64,12 @@ class UserController extends ActiveController{
         return $resultado;
     }
 
+    /**
+     * Se buscar el usuario por nro_documento y se realiza la modificacion de sus datos
+     *
+     * @param [string] $nro_documento
+     * @return json
+     */
     public function actionModificar($nro_documento)
     {
         $param = Yii::$app->request->post();
@@ -100,6 +106,12 @@ class UserController extends ActiveController{
 
     }
 
+    /**
+     * Se busca el usuario por nro_documento y se borra
+     *
+     * @param [string] $nro_documento
+     * @return json
+     */
     public function actionBorrarUsuario($nro_documento)
     {
         $transaction = Yii::$app->db->beginTransaction();
