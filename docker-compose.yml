@@ -1,0 +1,51 @@
+version: '2'
+
+services:
+  desafio:
+    image: yiisoftware/yii2-php:7.3-apache
+    volumes:
+      - ./:/app
+    networks:
+      - backend
+    environment:
+      DB_HOST: 'desafio_db'
+      DB_NAME: 'desafio'
+      DB_PASS: root
+    labels:
+     - "traefik.backend=desafio"
+     - "traefik.frontend.rule=Host:desafio.local"
+     - "traefik.port=80"
+
+  desafio_db:
+    image: mysql:8.0.29
+    restart: always
+    environment:
+     MYSQL_ROOT_PASSWORD: root
+    ports:
+     - 3308:3306
+    networks:
+      - backend
+
+##### PROXY
+  proxy:
+    image: traefik:1.7.6
+    restart: always
+    command: --web --docker --docker.domain=local
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./docker/config/proxy/traefik.toml:/etc/traefik/traefik.toml
+    labels:
+     - "traefik.backend=proxy"
+     - "traefik.frontend.rule=Host:proxy.local"
+     - "traefik.port=8080"
+    networks:
+      - backend
+     
+networks:
+  backend:
+
+####VOLUMES
+volumes:
+  desafio-vol:
