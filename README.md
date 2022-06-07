@@ -49,12 +49,16 @@ INSTALLATION
 
 Dentro de la carpeta api-desafio-possumus vamos a corremos el sieguiente comando (esto mismo crea volumen para la bd). Gracias al docker-compose desplegamos la aplicacion con su bases de datos estableciendo minimas configuraciones
 		
-		-ambiente dev
+	*Ambiente dev
 		docker-compose -p app up -d 
 
 	*Borramos los contenedores (borra los contenedores)
 
 		docker-compose -p app down
+
+Luego de desplegar los contenedor, procedemos a la creacion de la bases de datos con el siguiente comando. La bd se persiste en el volume de docker-compose llamado app_desafio-vol
+
+    docker exec -i app_desafio_db_1 mysql -u root -proot --execute 'create database desafio DEFAULT CHARACTER SET utf8'
     
 CONFIGURATION
 -------------
