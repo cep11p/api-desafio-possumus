@@ -28,6 +28,7 @@ class User extends BaseUser
             parent::rules(),
             [
                 # custom validation rules
+                ['email', 'email']
             ]
         );
     }
