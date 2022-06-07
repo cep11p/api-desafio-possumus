@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\Help;
 use \app\models\base\User as BaseUser;
 use yii\helpers\ArrayHelper;
 
@@ -23,12 +24,22 @@ class User extends BaseUser
 
     public function rules()
     {
+
+        
         return ArrayHelper::merge(
             parent::rules(),
             [
                 # custom validation rules
-                ['email', 'email']
+                ['email', 'email'],
+                ['fecha_nacimiento', 'validarEdad']
             ]
         );
+    }
+
+    public function validarEdad($attribute, $params){
+        $max_age = date('Y-m-d',strtotime(date('Y-m-d').' -18 year'));
+        if($this->$attribute > $max_age){
+            $this->addError($attribute,'El usuario debe ser mayor o igual a 18 años de edad');
+        }
     }
 }
