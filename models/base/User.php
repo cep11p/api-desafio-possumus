@@ -36,9 +36,11 @@ abstract class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'apellido', 'nro_documento', 'email'], 'required'],
+            [['nombre', 'apellido', 'email'], 'required'],
             [['fecha_nacimiento'], 'safe'],
-            [['nombre', 'apellido', 'nro_documento', 'email'], 'string', 'max' => 200]
+            [['nombre', 'apellido', 'email'], 'string', 'max' => 200],
+            [['nro_documento'], 'string', 'max' => 10],
+            [['nro_documento'], 'unique']
         ];
     }
 
