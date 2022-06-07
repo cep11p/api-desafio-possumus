@@ -42,10 +42,10 @@ docker-compose version 1.29.2
 
 
 
-INSTALLATION
+INSTALACION
 ------------
 
-### Install with Docker
+### Instalacion con Docker
 
 Dentro de la carpeta api-desafio-possumus vamos a corremos el sieguiente comando (esto mismo crea volumen para la bd). Gracias al docker-compose desplegamos la aplicacion con su bases de datos estableciendo minimas configuraciones
 		
@@ -69,7 +69,7 @@ Ademas se deben instalar las librerias y correr migraciones para su correcto fun
         composer install
 
     Corremos las migraciones dentro del mismo contenedor
-        /yii migrate/up
+        ./yii migrate/up
 
 Como ultimo paso debemos configurar nuestro hosts /etc/hosts de nuestra computadora. Esto nos permite ir al navegador y encontrar nuesta aplicacion con la url desafio.local/. Para ello, realizamos las siguientes instrucciones:
 
@@ -81,10 +81,10 @@ Como ultimo paso debemos configurar nuestro hosts /etc/hosts de nuestra computad
 
 
     
-CONFIGURATION
+CONFIGURACION
 -------------
 
-### Database
+### Base de datos
 Las configuraciones de bd se encuentran en `config/db.php`, aca mismo vamos a usar variables de entorno creadas en el docker-compose
 
 ## Lista de URls:
