@@ -99,5 +99,39 @@ class UserController extends ActiveController{
         }
 
     }
+
+    public function actionBorrarUsuario($nro_documento)
+    {
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            
+            /************ Persona *************/
+            $model = User::findOne(['nro_documento'=>$nro_documento]);
+            
+            #chequeamos si el usuario existe
+            if($model==NULL){
+                $msj = "Usuario $nro_documento no encontrado";
+                throw new HttpException(400,$msj);
+            }            
+             
+            #chequeamos si por algun motivo no se pudo borrar el usuario
+            if(!$model->delete()){
+                throw new HttpException(400,json_encode($model->getErrors()));
+            }
+           
+            $transaction->commit();
+            
+            $resultado['message'] =  "Se borra el usuario $nro_documento";
+            return $resultado;
+           
+        }catch (HttpException $exc) {            
+            $transaction->rollBack();
+            $mensaje =$exc->getMessage();
+            $code = (empty($exc->getCode()))?400:$exc->getCode();
+            throw new \yii\web\HttpException($code,$mensaje);
+
+        }
+
+    }
     
 }

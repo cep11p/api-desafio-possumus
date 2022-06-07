@@ -73,6 +73,8 @@ $config = [
                     'extraPatterns' => [
                         'PUT modificar/{nro_documento}' => 'modificar',
                         'OPTIONS modificar/{nro_documento}' => 'modificar',
+                        'DELETE borrar-usuario/{nro_documento}' => 'borrar-usuario',
+                        'DELETE borrar-usuario/{nro_documento}' => 'borrar-usuario',
                     ],
                     'tokens' => [ '{id}' => '<id:\\w+>', '{nro_documento}'=>'<nro_documento:\\w+>' ],
                 ],
