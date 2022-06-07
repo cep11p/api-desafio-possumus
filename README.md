@@ -59,12 +59,47 @@ Dentro de la carpeta api-desafio-possumus vamos a corremos el sieguiente comando
 Luego de desplegar los contenedor, procedemos a la creacion de la bases de datos con el siguiente comando. La bd se persiste en el volume de docker-compose llamado app_desafio-vol
 
     docker exec -i app_desafio_db_1 mysql -u root -proot --execute 'create database desafio DEFAULT CHARACTER SET utf8'
+
+Ademas se deben instalar las librerias necesarias para su funcionamiento, para ellos hacemos lo siguiente:
+
+    Ingresamos al contenedor
+        docker exec -ti app_desafio_1 bash
+    
+    Dentro del contenedor corremos el siguiente comando para instalar las librerias necesarias
+        composer install
+
+    Corremos las migraciones dentro del mismo contenedor
+        /yii migrate/up
+
+Como ultimo paso debemos configurar nuestro hosts /etc/hosts de nuestra computadora. Esto nos permite ir al navegador y encontrar nuesta aplicacion con la url desafio.local/. Para seguimos la siguientes instrucciones:
+
+    #editamos el hosts
+    sudo nano /etc/hosts
+
+    #y agregamos la siguiente linea
+    127.0.0.1       desafio.local
+
+
     
 CONFIGURATION
 -------------
 
 ### Database
-Las configuraciones de bd se encuentran en `config/db.php`, aca mismo vamos a usar variables de entorno
+Las configuraciones de bd se encuentran en `config/db.php`, aca mismo vamos a usar variables de entorno creadas en el docker-compose
 
-**URl:**
+**Lista de URls:**
 
+Obtenemos la lista de usuarios
+    (GET) desafio.local/api/users 
+
+Filtramos el usuario por nro de documento
+    (GET) desafio.local/api/users?nro_documento=33888123
+
+Creamos un nuevo usuario, el mismo valida que los usuario sean mayor a 18 años
+    (POST) desafio.local/api/users 
+
+Nos permite ubicar el usuario con numero de documento y poder logar su modificado o actualizacion de datos
+    (PUT) desafio.local/api/users/modificar/{nro_documento} 
+
+Para borrar el usuario buscador por nro de documento
+    (DELETE) desafio.local/api/users/borrar-usuario/33888123
