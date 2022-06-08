@@ -31,7 +31,7 @@ Dentro de la carpeta api-desafio-possumus vamos a corremos el sieguiente comando
 
 		docker-compose -p app down -v
 
-Luego de desplegar los contenedores, procedemos a la creación de la base de datos con el siguiente comando. La bd se persiste en el volumen de docker-compose llamado app_desafio-vol
+Luego de desplegar los contenedores, procedemos a la creación de la base de datos con el siguiente comando. La bd se persiste en el volumen de docker-compose llamado app_desafio-vol. Tener encuenta que a veces tarda en desplegar el contenedor app_desafio_db_1 y puede que no podamos correr inmediantamente el siguiente comando
 
     docker exec -i app_desafio_db_1 mysql -u root -proot --execute 'create database desafio DEFAULT CHARACTER SET utf8'
 
